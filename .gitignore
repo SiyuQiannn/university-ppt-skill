@@ -1,0 +1,8 @@
+outputs/
+*.tmp
+*.bak
+~$*.pptx
+Thumbs.db
+.DS_Store
+preview_png/
+*.log

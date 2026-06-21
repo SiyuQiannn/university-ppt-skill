@@ -1,0 +1,43 @@
+{
+  "school_id": "ruc",
+  "school_name_zh": "中国人民大学",
+  "school_name_en": "Renmin University of China",
+  "theme_family": "red",
+  "verification_status": "working_sample_from_existing_ruc_template_library",
+  "font_family": "Microsoft YaHei",
+  "color_tokens": {
+    "primary": "#A00000",
+    "primary_dark": "#750000",
+    "primary_light_75": "#C94A4A",
+    "primary_light_50": "#E18A8A",
+    "primary_light_25": "#F5DADA",
+    "primary_pale": "#FBEDEE",
+    "neutral_dark": "#333333",
+    "neutral": "#808080",
+    "neutral_light": "#E9E9E9",
+    "accent": "#C8A85A",
+    "accent_pale": "#EFE4C6",
+    "background": "#FFFFFF"
+  },
+  "logo_rules": {
+    "preserve_aspect_ratio": true,
+    "use_white_logo_on_primary_bars": true,
+    "use_full_color_logo_on_light_backgrounds": true
+  },
+  "image_rules": {
+    "default_structure_suites_use_photos": false,
+    "allowed_photo_subjects": [
+      "campus gate",
+      "school landmark",
+      "campus aerial view",
+      "library or main building"
+    ]
+  },
+  "asset_paths": {
+    "logo_full_color": "logos/full-color.png",
+    "logo_white": "logos/white.png",
+    "logo_seal_full_color": "logos/seal-full-color.png",
+    "logo_seal_white": "logos/seal-white.png",
+    "photos_dir": "photos/"
+  }
+}

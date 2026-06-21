@@ -1,0 +1,50 @@
+{
+  "school_id": "njfu",
+  "school_name_zh": "南京林业大学",
+  "school_name_en": "Nanjing Forestry University",
+  "theme_family": "green",
+  "verification_status": "working_sample_from_theme_migration_test",
+  "font_family": "Microsoft YaHei",
+  "color_tokens": {
+    "primary": "#007A3D",
+    "primary_dark": "#004D2D",
+    "primary_light_75": "#3C9B69",
+    "primary_light_50": "#86C69F",
+    "primary_light_25": "#DDEFE6",
+    "primary_pale": "#EEF8F2",
+    "neutral_dark": "#333333",
+    "neutral": "#808080",
+    "neutral_light": "#E9E9E9",
+    "accent": "#D8C783",
+    "accent_pale": "#F1E9C8",
+    "background": "#FFFFFF"
+  },
+  "logo_rules": {
+    "preserve_aspect_ratio": true,
+    "use_white_logo_on_primary_bars": true,
+    "use_full_color_logo_on_light_backgrounds": true
+  },
+  "image_rules": {
+    "default_structure_suites_use_photos": false,
+    "allowed_photo_subjects": [
+      "campus gate",
+      "school landmark",
+      "campus aerial view",
+      "library or main building"
+    ],
+    "forbidden_major_color_leftovers": [
+      "red",
+      "blue",
+      "pink",
+      "orange",
+      "purple"
+    ]
+  },
+  "asset_paths": {
+    "logo_full_color": "logos/full-color.png",
+    "logo_white": "logos/white.png",
+    "logo_seal_full_color": "logos/seal-full-color.png",
+    "logo_seal_white": "logos/seal-white.png",
+    "photos_dir": "photos/"
+  }
+}

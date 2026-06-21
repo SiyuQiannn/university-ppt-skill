@@ -1,0 +1,50 @@
+{
+  "school_id": "fudan",
+  "school_name_zh": "复旦大学",
+  "school_name_en": "Fudan University",
+  "theme_family": "blue",
+  "verification_status": "working_sample_from_theme_migration_test",
+  "font_family": "Microsoft YaHei",
+  "color_tokens": {
+    "primary": "#1F4E9D",
+    "primary_dark": "#0B2E6F",
+    "primary_light_75": "#4D78B8",
+    "primary_light_50": "#8EADD6",
+    "primary_light_25": "#DCE8F8",
+    "primary_pale": "#EEF4FC",
+    "neutral_dark": "#333333",
+    "neutral": "#808080",
+    "neutral_light": "#E9E9E9",
+    "accent": "#D8C783",
+    "accent_pale": "#F1E9C8",
+    "background": "#FFFFFF"
+  },
+  "logo_rules": {
+    "preserve_aspect_ratio": true,
+    "use_white_logo_on_primary_bars": true,
+    "use_full_color_logo_on_light_backgrounds": true
+  },
+  "image_rules": {
+    "default_structure_suites_use_photos": false,
+    "allowed_photo_subjects": [
+      "campus gate",
+      "school landmark",
+      "campus aerial view",
+      "library or main building"
+    ],
+    "forbidden_major_color_leftovers": [
+      "red",
+      "pink",
+      "green",
+      "orange",
+      "purple"
+    ]
+  },
+  "asset_paths": {
+    "logo_full_color": "logos/full-color.png",
+    "logo_white": "logos/white.png",
+    "logo_seal_full_color": "logos/seal-full-color.png",
+    "logo_seal_white": "logos/seal-white.png",
+    "photos_dir": "photos/"
+  }
+}

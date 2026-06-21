@@ -1,0 +1,116 @@
+{
+  "version": "0.1.0",
+  "default_slide_size": "16:9",
+  "default_font": "Microsoft YaHei",
+  "structure_suites": [
+    {
+      "id": "ruc_no_image",
+      "school_id": "ruc",
+      "path": "structure-suites/ruc_no_image/00_no_image_cover_catalog_chapter_content_ending_suites.pptx",
+      "includes": [
+        "cover",
+        "directory",
+        "chapter",
+        "content_master",
+        "ending"
+      ],
+      "photo_policy": "no_photo_default",
+      "notes": "Clean structure suite for normal generated decks. Main color should appear as bars, bands, lines, and small identity elements rather than full-screen color fills."
+    },
+    {
+      "id": "ruc_thesis_exact",
+      "school_id": "ruc",
+      "path": "structure-suites/ruc_thesis_exact/00_ruc_thesis_exact_cover_catalog_chapter_content_ending_suite.pptx",
+      "includes": [
+        "cover",
+        "directory",
+        "chapter",
+        "content_master",
+        "ending"
+      ],
+      "photo_policy": "photo_gradient_allowed",
+      "notes": "Replica of the thesis-style RUC suite. Image effect is built from a school photo plus white gradient plus primary-color gradient."
+    }
+  ],
+  "content_layout_libraries": [
+    {
+      "id": "ruc_core",
+      "school_id": "ruc",
+      "path": "content-layouts/ruc_core",
+      "layout_files": [
+        {
+          "file": "01_综合卡片要点_源模板复刻.pptx",
+          "relation_types": [
+            "bullet_points",
+            "cards",
+            "summary"
+          ]
+        },
+        {
+          "file": "02_图文案例证据_源模板复刻.pptx",
+          "relation_types": [
+            "image_text",
+            "case_evidence",
+            "team_profile"
+          ]
+        },
+        {
+          "file": "03_流程时间线阶段_源模板复刻.pptx",
+          "relation_types": [
+            "process",
+            "timeline",
+            "stage"
+          ]
+        },
+        {
+          "file": "04_层级金字塔框架_源模板复刻.pptx",
+          "relation_types": [
+            "hierarchy",
+            "pyramid",
+            "framework"
+          ]
+        },
+        {
+          "file": "05_对比分析框架_源模板复刻.pptx",
+          "relation_types": [
+            "comparison",
+            "matrix",
+            "pros_cons"
+          ]
+        },
+        {
+          "file": "06_数据图表表格_源模板复刻.pptx",
+          "relation_types": [
+            "data",
+            "chart",
+            "table"
+          ]
+        },
+        {
+          "file": "07_地图区域空间_源模板复刻.pptx",
+          "relation_types": [
+            "map",
+            "spatial",
+            "regional"
+          ]
+        },
+        {
+          "file": "08_循环网络关系_源模板复刻.pptx",
+          "relation_types": [
+            "cycle",
+            "network",
+            "relationship"
+          ]
+        },
+        {
+          "file": "10_图标素材库_源模板复刻.pptx",
+          "relation_types": [
+            "icons",
+            "visual_assets"
+          ]
+        }
+      ],
+      "layout_policy": "Center content only. Header, footer, logo, page number, and border chrome should come from the selected structure suite/content master."
+    }
+  ]
+}
