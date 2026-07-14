@@ -8,3 +8,5 @@ preview_png/
 *.log
 _workflow_test_output/
 skill/university-ppt/_workflow_test_output/
+skill/university-ppt/_assembly_smoke_output/
+skill/university-ppt/_manual_generic_test/

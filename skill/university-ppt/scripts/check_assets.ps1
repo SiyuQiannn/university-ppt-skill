@@ -32,6 +32,8 @@ Add-Check "reference" "references\test_protocol.md"
 Add-Check "script" "scripts\new_deck_spec.ps1"
 Add-Check "script" "scripts\validate_deck_spec.ps1"
 Add-Check "script" "scripts\run_workflow_tests.ps1"
+Add-Check "script" "scripts\assemble_deck.ps1"
+Add-Check "script" "scripts\run_assembly_smoke_test.ps1"
 Add-Check "spec" "assets\specs\deck_spec.template.json"
 Add-Check "spec" "assets\specs\deck_spec.sample.json"
 

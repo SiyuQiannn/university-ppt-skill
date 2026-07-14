@@ -11,6 +11,7 @@
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\new_deck_spec.ps1 -SkillRoot . -SchoolId ruc -Purpose thesis_defense -TargetSlideCount 12 -OutputPath .\outputs\ruc_thesis\deck_spec.json
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate_deck_spec.ps1 -SkillRoot . -SpecPath .\outputs\ruc_thesis\deck_spec.json -Strict
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\assemble_deck.ps1 -SkillRoot . -SpecPath .\outputs\ruc_thesis\deck_spec.json -OutputDir .\outputs\ruc_thesis
 ```
 
 如果 spec 校验不通过，不得继续生成正式 PPTX。先修复资产、schema、页面计划或主题 token。
@@ -239,6 +240,7 @@ target_slides: 16
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\check_assets.ps1 -SkillRoot .
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_workflow_tests.ps1 -SkillRoot .
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_assembly_smoke_test.ps1 -SkillRoot .
 ```
 
 回归测试至少覆盖：
@@ -247,6 +249,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_workflow_tests
 - 已入库蓝色系学校新建 deck spec。
 - 已入库绿色系学校新建 deck spec。
 - 未入库学校应失败并进入资产补全。
+- 真实组装器应生成一套可编辑 PPTX 和 contact-sheet 预览。
 
 更多测试说明见 `references/test_protocol.md`。
 

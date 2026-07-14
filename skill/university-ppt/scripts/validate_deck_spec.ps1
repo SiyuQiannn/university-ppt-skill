@@ -35,6 +35,17 @@ function Resolve-SkillPath([string]$relativePath) {
     return Join-Path $SkillRoot ($relativePath -replace "/", "\")
 }
 
+function Get-PptxSlideCount([string]$path) {
+    if (-not (Test-Path -LiteralPath $path)) { return 0 }
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $zip = [System.IO.Compression.ZipFile]::OpenRead($path)
+    try {
+        return @($zip.Entries | Where-Object { $_.FullName -match '^ppt/slides/slide[0-9]+\.xml$' }).Count
+    } finally {
+        $zip.Dispose()
+    }
+}
+
 $spec = Get-Content -Raw -Encoding UTF8 -LiteralPath $SpecPath | ConvertFrom-Json
 
 Test-RequiredString $spec.schema_version "schema_version"
@@ -132,6 +143,15 @@ if ($slides.Count -eq 0) {
                 $layoutFullPath = Resolve-SkillPath (Join-Path "assets" $layoutRelative)
                 if (-not (Test-Path -LiteralPath $layoutFullPath)) {
                     Add-Issue "Error" "missing_layout_file" "Selected layout file does not exist: $layoutRelative" "slides[$($slide.slide_number)].selected_layout_file"
+                } else {
+                    $idx = 1
+                    if ($null -ne $slide.selected_layout_slide_index) {
+                        $idx = [int]$slide.selected_layout_slide_index
+                    }
+                    $count = Get-PptxSlideCount $layoutFullPath
+                    if ($idx -lt 1 -or $idx -gt $count) {
+                        Add-Issue "Error" "invalid_layout_slide_index" "Selected slide index $idx is outside '$layoutRelative' slide count $count." "slides[$($slide.slide_number)].selected_layout_slide_index"
+                    }
                 }
             }
         }

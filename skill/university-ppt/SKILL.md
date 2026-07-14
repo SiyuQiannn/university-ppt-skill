@@ -58,6 +58,11 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate_deck_spec
   -SkillRoot . `
   -SpecPath .\outputs\ruc_thesis\deck_spec.json `
   -Strict
+
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\assemble_deck.ps1 `
+  -SkillRoot . `
+  -SpecPath .\outputs\ruc_thesis\deck_spec.json `
+  -OutputDir .\outputs\ruc_thesis
 ```
 
 ## Non-Negotiable Output Rules
@@ -111,6 +116,7 @@ After changing this skill, run:
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\check_assets.ps1 -SkillRoot .
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_workflow_tests.ps1 -SkillRoot .
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_assembly_smoke_test.ps1 -SkillRoot .
 ```
 
-The workflow tests must include successful specs for onboarded schools and one expected failure for a missing school. If a test fails unexpectedly, update the skill resources and rerun until it passes.
+The workflow tests must include successful specs for onboarded schools and one expected failure for a missing school. The assembly smoke test must create a real editable PPTX and contact-sheet preview. If a test fails unexpectedly, update the skill resources and rerun until it passes.

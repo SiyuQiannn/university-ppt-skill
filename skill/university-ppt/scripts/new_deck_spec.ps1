@@ -111,12 +111,24 @@ function Resolve-LayoutForRelation([string]$relation) {
 
     $candidates = @($relationToFiles[$resolved] | Select-Object -First 3)
     $selected = $candidates | Select-Object -First 1
+    $defaultSlideIndex = 1
+    if ($selected.file -like "01_*") { $defaultSlideIndex = 10 }
+    elseif ($selected.file -like "02_*") { $defaultSlideIndex = 1 }
+    elseif ($selected.file -like "03_*") { $defaultSlideIndex = 13 }
+    elseif ($selected.file -like "04_*") { $defaultSlideIndex = 3 }
+    elseif ($selected.file -like "05_*") { $defaultSlideIndex = 8 }
+    elseif ($selected.file -like "06_*") { $defaultSlideIndex = 6 }
+    elseif ($selected.file -like "07_*") { $defaultSlideIndex = 1 }
+    elseif ($selected.file -like "08_*") { $defaultSlideIndex = 8 }
+    elseif ($selected.file -like "10_*") { $defaultSlideIndex = 1 }
+
     return [pscustomobject]@{
         requested_relation = $relation
         relation = $resolved
         candidates = @($candidates | ForEach-Object { "$($contentLibrary.id)/$($_.file)" })
         selected = "$($contentLibrary.id)/$($selected.file)"
         selected_file = "content-layouts/$($contentLibrary.id)/$($selected.file)"
+        selected_slide_index = $defaultSlideIndex
     }
 }
 
@@ -162,6 +174,7 @@ for ($i = 0; $i -lt $contentCount; $i++) {
         content_layout_candidates = $layout.candidates
         selected_layout = $layout.selected
         selected_layout_file = $layout.selected_file
+        selected_layout_slide_index = $layout.selected_slide_index
         content_density = "medium"
         text_policy = "placeholder_or_user_content"
         image_policy = "none"

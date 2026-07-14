@@ -20,6 +20,7 @@
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\check_assets.ps1 -SkillRoot .
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_workflow_tests.ps1 -SkillRoot .
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_assembly_smoke_test.ps1 -SkillRoot .
 ```
 
 自动测试包含：
@@ -30,6 +31,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_workflow_tests
 | 蓝色系学校 + 项目汇报 | 生成并通过严格 spec 校验 |
 | 绿色系学校 + 课程汇报 | 生成并通过严格 spec 校验 |
 | 未入库学校 | `new_deck_spec.ps1` 应失败，并提示缺少 `brand.json` |
+| 真实 PPT 组装 | `assemble_deck.ps1` 应生成 `.pptx`、`preview_png/`、`preview_contact_sheet.png` |
 
 ## 人工测试问答
 
@@ -94,5 +96,5 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_workflow_tests
 1. 先看 `workflow_test_report.json`。
 2. 判断是脚本问题、资产缺失、schema 不完整，还是规则冲突。
 3. 修改对应脚本、reference 或 asset index。
-4. 重跑 `check_assets.ps1` 和 `run_workflow_tests.ps1`。
+4. 重跑 `check_assets.ps1`、`run_workflow_tests.ps1` 和 `run_assembly_smoke_test.ps1`。
 5. 只有全部通过后才提交或发布。

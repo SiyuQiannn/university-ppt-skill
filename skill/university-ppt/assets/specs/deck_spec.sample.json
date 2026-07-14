@@ -1,4 +1,4 @@
-{
+﻿{
   "schema_version": "0.2",
   "mode": "new_deck",
   "request": {
@@ -131,6 +131,7 @@
       "content_layout_candidates": ["ruc_core/01_综合卡片要点_源模板复刻.pptx"],
       "selected_layout": "ruc_core/01_综合卡片要点_源模板复刻.pptx",
       "selected_layout_file": "content-layouts/ruc_core/01_综合卡片要点_源模板复刻.pptx",
+      "selected_layout_slide_index": 10,
       "content_density": "medium",
       "text_policy": "placeholder_or_user_content",
       "image_policy": "none"
@@ -144,6 +145,7 @@
       "content_layout_candidates": ["ruc_core/03_流程时间线阶段_源模板复刻.pptx"],
       "selected_layout": "ruc_core/03_流程时间线阶段_源模板复刻.pptx",
       "selected_layout_file": "content-layouts/ruc_core/03_流程时间线阶段_源模板复刻.pptx",
+      "selected_layout_slide_index": 13,
       "content_density": "medium",
       "text_policy": "placeholder_or_user_content",
       "image_policy": "none"
@@ -157,6 +159,7 @@
       "content_layout_candidates": ["ruc_core/05_对比分析框架_源模板复刻.pptx"],
       "selected_layout": "ruc_core/05_对比分析框架_源模板复刻.pptx",
       "selected_layout_file": "content-layouts/ruc_core/05_对比分析框架_源模板复刻.pptx",
+      "selected_layout_slide_index": 8,
       "content_density": "medium",
       "text_policy": "placeholder_or_user_content",
       "image_policy": "none"
@@ -170,6 +173,7 @@
       "content_layout_candidates": ["ruc_core/04_层级金字塔框架_源模板复刻.pptx"],
       "selected_layout": "ruc_core/04_层级金字塔框架_源模板复刻.pptx",
       "selected_layout_file": "content-layouts/ruc_core/04_层级金字塔框架_源模板复刻.pptx",
+      "selected_layout_slide_index": 3,
       "content_density": "medium",
       "text_policy": "placeholder_or_user_content",
       "image_policy": "none"

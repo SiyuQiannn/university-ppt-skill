@@ -1,0 +1,262 @@
+﻿{
+    "schema_version":  "0.2",
+    "mode":  "new_deck",
+    "request":  {
+                    "raw_user_request":  "帮我做一套中国人民大学主题的课程汇报 PPT，8 页，尽量不用图片。",
+                    "language":  "zh-CN",
+                    "purpose":  "course_report",
+                    "audience":  "general_university_audience",
+                    "target_slide_count":  8,
+                    "content_status":  "outline_only",
+                    "output_format":  "pptx",
+                    "aspect_ratio":  "16:9",
+                    "density":  "reading_first",
+                    "image_preference":  "minimal"
+                },
+    "school":  {
+                   "school_id":  "ruc",
+                   "name_zh":  "中国人民大学",
+                   "name_en":  "Renmin University of China",
+                   "short_name":  "中国人民大学",
+                   "asset_status":  "complete",
+                   "asset_dir":  "assets/schools/ruc",
+                   "source_policy":  "confirmed_local_assets"
+               },
+    "theme":  {
+                  "font_zh":  "Microsoft YaHei",
+                  "font_en":  "Arial",
+                  "family":  "red",
+                  "tokens":  {
+                                 "primary":  "#A00000",
+                                 "primary_dark":  "#750000",
+                                 "primary_light_75":  "#C94A4A",
+                                 "primary_light_50":  "#E18A8A",
+                                 "primary_light_25":  "#F5DADA",
+                                 "primary_pale":  "#FBEDEE",
+                                 "neutral_dark":  "#333333",
+                                 "neutral":  "#808080",
+                                 "neutral_light":  "#E9E9E9",
+                                 "accent":  "#C8A85A",
+                                 "accent_pale":  "#EFE4C6",
+                                 "background":  "#FFFFFF"
+                             },
+                  "allowed_supporting_roles":  [
+                                                   "neutral",
+                                                   "neutral_light",
+                                                   "accent",
+                                                   "accent_pale"
+                                               ],
+                  "forbidden_color_families":  [
+                                                   "unmapped_source_school_color",
+                                                   "saturated_competing_color"
+                                               ]
+              },
+    "assets":  {
+                   "logos":  {
+                                 "color_horizontal":  {
+                                                          "path":  "assets/schools/ruc/logos/full-color.png",
+                                                          "usage":  "light_background",
+                                                          "preserve_aspect_ratio":  true
+                                                      },
+                                 "white_horizontal":  {
+                                                          "path":  "assets/schools/ruc/logos/white.png",
+                                                          "usage":  "dark_background",
+                                                          "preserve_aspect_ratio":  true
+                                                      },
+                                 "seal_color":  {
+                                                    "path":  "assets/schools/ruc/logos/seal-full-color.png",
+                                                    "usage":  "light_background",
+                                                    "preserve_aspect_ratio":  true
+                                                },
+                                 "seal_white":  {
+                                                    "path":  "assets/schools/ruc/logos/seal-white.png",
+                                                    "usage":  "dark_background",
+                                                    "preserve_aspect_ratio":  true
+                                                }
+                             },
+                   "photos":  [
+
+                              ],
+                   "icons":  {
+                                 "source":  "built_in_editable_shapes",
+                                 "recolor_policy":  "theme_tokens_only"
+                             }
+               },
+    "structure_suite":  {
+                            "suite_id":  "ruc_no_image",
+                            "source":  "structure-suites/ruc_no_image/00_no_image_cover_catalog_chapter_content_ending_suites.pptx",
+                            "selected_from_preview":  "auto",
+                            "pages":  {
+                                          "cover":  {
+                                                        "layout_id":  "cover",
+                                                        "uses_photo":  false,
+                                                        "main_color_extent":  "central_band_or_structural_bars_only"
+                                                    },
+                                          "toc":  {
+                                                      "layout_id":  "toc",
+                                                      "uses_photo":  false
+                                                  },
+                                          "section":  {
+                                                          "layout_id":  "section",
+                                                          "uses_photo":  false,
+                                                          "main_color_extent":  "central_band_or_structural_bars_only"
+                                                      },
+                                          "content_master":  {
+                                                                 "layout_id":  "content_master",
+                                                                 "chrome_policy":  "master_only"
+                                                             },
+                                          "ending":  {
+                                                         "layout_id":  "ending",
+                                                         "uses_photo":  false
+                                                     }
+                                      }
+                        },
+    "slides":  [
+                   {
+                       "slide_number":  1,
+                       "page_type":  "cover",
+                       "title":  "中国人民大学课程汇报",
+                       "subtitle":  "此处填写副标题",
+                       "structure_layout":  "cover"
+                   },
+                   {
+                       "slide_number":  2,
+                       "page_type":  "toc",
+                       "title":  "目录",
+                       "structure_layout":  "toc"
+                   },
+                   {
+                       "slide_number":  3,
+                       "page_type":  "section",
+                       "section":  "01",
+                       "title":  "章节标题",
+                       "structure_layout":  "section"
+                   },
+                   {
+                       "slide_number":  4,
+                       "page_type":  "content",
+                       "section":  "01",
+                       "title":  "此处填写标题",
+                       "relation":  "bullet_points",
+                       "requested_relation":  "bullet_points",
+                       "content_layout_candidates":  [
+                                                         "ruc_core/01_综合卡片要点_源模板复刻.pptx"
+                                                     ],
+                       "selected_layout":  "ruc_core/01_综合卡片要点_源模板复刻.pptx",
+                       "selected_layout_file":  "content-layouts/ruc_core/01_综合卡片要点_源模板复刻.pptx",
+                       "selected_layout_slide_index":  10,
+                       "content_density":  "medium",
+                       "text_policy":  "placeholder_or_user_content",
+                       "image_policy":  "none"
+                   },
+                   {
+                       "slide_number":  5,
+                       "page_type":  "content",
+                       "section":  "01",
+                       "title":  "此处填写标题",
+                       "relation":  "process",
+                       "requested_relation":  "process",
+                       "content_layout_candidates":  [
+                                                         "ruc_core/03_流程时间线阶段_源模板复刻.pptx"
+                                                     ],
+                       "selected_layout":  "ruc_core/03_流程时间线阶段_源模板复刻.pptx",
+                       "selected_layout_file":  "content-layouts/ruc_core/03_流程时间线阶段_源模板复刻.pptx",
+                       "selected_layout_slide_index":  13,
+                       "content_density":  "medium",
+                       "text_policy":  "placeholder_or_user_content",
+                       "image_policy":  "none"
+                   },
+                   {
+                       "slide_number":  6,
+                       "page_type":  "content",
+                       "section":  "01",
+                       "title":  "此处填写标题",
+                       "relation":  "comparison",
+                       "requested_relation":  "comparison",
+                       "content_layout_candidates":  [
+                                                         "ruc_core/05_对比分析框架_源模板复刻.pptx"
+                                                     ],
+                       "selected_layout":  "ruc_core/05_对比分析框架_源模板复刻.pptx",
+                       "selected_layout_file":  "content-layouts/ruc_core/05_对比分析框架_源模板复刻.pptx",
+                       "selected_layout_slide_index":  8,
+                       "content_density":  "medium",
+                       "text_policy":  "placeholder_or_user_content",
+                       "image_policy":  "none"
+                   },
+                   {
+                       "slide_number":  7,
+                       "page_type":  "content",
+                       "section":  "01",
+                       "title":  "此处填写标题",
+                       "relation":  "hierarchy",
+                       "requested_relation":  "hierarchy",
+                       "content_layout_candidates":  [
+                                                         "ruc_core/04_层级金字塔框架_源模板复刻.pptx"
+                                                     ],
+                       "selected_layout":  "ruc_core/04_层级金字塔框架_源模板复刻.pptx",
+                       "selected_layout_file":  "content-layouts/ruc_core/04_层级金字塔框架_源模板复刻.pptx",
+                       "selected_layout_slide_index":  3,
+                       "content_density":  "medium",
+                       "text_policy":  "placeholder_or_user_content",
+                       "image_policy":  "none"
+                   },
+                   {
+                       "slide_number":  8,
+                       "page_type":  "ending",
+                       "title":  "谢谢",
+                       "structure_layout":  "ending"
+                   }
+               ],
+    "layout_policy":  {
+                          "content_layout_source":  "assets/content-layouts/ruc_core",
+                          "variants_per_relation":  {
+                                                        "default":  2,
+                                                        "major":  3
+                                                    },
+                          "avoid_repeating_exact_layout_within":  3,
+                          "text_box_policy":  "only_required_text_boxes",
+                          "center_layout_only":  true,
+                          "chrome_owned_by_master":  true
+                      },
+    "generation_policy":  {
+                              "editable_pptx_required":  true,
+                              "whole_slide_image_allowed":  false,
+                              "pptx_engine_priority":  [
+                                                           "existing_pptx_template_clone",
+                                                           "openxml_edit",
+                                                           "pptxgenjs_from_layout_recipe"
+                                                       ],
+                              "shape_complexity":  "preserve_or_recreate",
+                              "font_policy":  "microsoft_yahei_all_editable_text",
+                              "slide_size":  "16:9"
+                          },
+    "validation_policy":  {
+                              "render_preview":  true,
+                              "checks":  [
+                                             "aspect_ratio_16_9",
+                                             "logo_aspect_ratio",
+                                             "font_family",
+                                             "theme_color_bounds",
+                                             "source_school_residue",
+                                             "template_source_residue",
+                                             "non_target_school_images",
+                                             "structure_page_main_color_extent",
+                                             "content_layout_no_extra_chrome",
+                                             "text_box_overcrowding",
+                                             "visual_overlap"
+                                         ],
+                              "fail_on":  [
+                                              "source_school_residue",
+                                              "logo_distortion",
+                                              "forbidden_strong_color",
+                                              "non_target_school_image",
+                                              "broken_pptx"
+                                          ]
+                          },
+    "outputs":  {
+                    "output_dir":  "outputs/ruc/course_report",
+                    "pptx":  "outputs/ruc/course_report/deck.pptx",
+                    "preview_contact_sheet":  "outputs/ruc/course_report/preview_contact_sheet.png",
+                    "validation_report":  "outputs/ruc/course_report/validation_report.json"
+                }
+}

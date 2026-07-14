@@ -293,6 +293,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate_deck_spec
       "process-card-chain-03"
     ],
     "selected_layout": "process-horizontal-steps-01",
+    "selected_layout_file": "content-layouts/ruc_core/03_流程时间线阶段_源模板复刻.pptx",
+    "selected_layout_slide_index": 13,
     "content_density": "medium",
     "text_policy": "placeholder_or_user_content",
     "image_policy": "none"
@@ -311,6 +313,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate_deck_spec
 | `relation` | string | 内容页信息关系 |
 | `content_layout_candidates` | array | 候选版式，通常 2-3 个 |
 | `selected_layout` | string | 最终版式 |
+| `selected_layout_file` | string | 可编辑 PPTX 版式文件，相对 `assets/` |
+| `selected_layout_slide_index` | number | 该版式文件中的具体页码 |
 | `content_density` | string | `low`、`medium`、`high` |
 | `text_policy` | string | `placeholder_or_user_content`、`preserve_user_text`、`summarize_user_text` |
 | `image_policy` | string | `none`、`school_identity`、`user_image`、`data_chart` |
@@ -449,7 +453,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate_deck_spec
       "slide_number": 4,
       "page_type": "content",
       "relation": "process",
-      "selected_layout": "process-horizontal-steps-01"
+      "selected_layout": "process-horizontal-steps-01",
+      "selected_layout_file": "content-layouts/ruc_core/03_流程时间线阶段_源模板复刻.pptx",
+      "selected_layout_slide_index": 13
     }
   ],
   "validation_policy": {

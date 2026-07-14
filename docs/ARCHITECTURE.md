@@ -34,8 +34,10 @@ The migration rule is strict:
 - `skill/university-ppt/scripts/check_assets.ps1`: asset validation.
 - `skill/university-ppt/scripts/new_deck_spec.ps1`: creates a locked deck spec from a user request.
 - `skill/university-ppt/scripts/validate_deck_spec.ps1`: validates spec structure, assets, theme tokens, and page rules.
+- `skill/university-ppt/scripts/assemble_deck.ps1`: assembles an editable PPTX from a validated deck spec.
 - `skill/university-ppt/scripts/run_workflow_tests.ps1`: tests the stable workflow against success and expected-failure scenarios.
+- `skill/university-ppt/scripts/run_assembly_smoke_test.ps1`: generates a real PPTX and contact-sheet preview.
 
 ## Current Limitation
 
-The current assembler is still sample oriented. The workflow layer is now spec-driven; the next engineering step is turning the PPTX assembler itself into a generic `deck_spec.json` runtime.
+The first generic assembler is now spec-driven. The next engineering step is deeper automated visual QA for logo residue, color leakage, and layout overlap.

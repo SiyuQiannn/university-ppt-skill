@@ -14,6 +14,8 @@ user request -> deck_spec.json -> strict validation -> PPTX assembly -> preview/
 
 The current automated test layer checks whether realistic user requests can be converted into valid `deck_spec.json` files before a PPTX assembler runs.
 
+The current assembly smoke test also verifies that a real editable PPTX and contact-sheet preview can be generated from a validated spec.
+
 ## Commands
 
 Run from `skill/university-ppt`:
@@ -21,6 +23,7 @@ Run from `skill/university-ppt`:
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\check_assets.ps1 -SkillRoot .
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_workflow_tests.ps1 -SkillRoot .
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_assembly_smoke_test.ps1 -SkillRoot .
 ```
 
 ## Result
@@ -31,6 +34,7 @@ Result:
 
 - Passed: 4
 - Failed: 0
+- Assembly smoke test: passed
 
 ## Automated Scenarios
 
@@ -40,6 +44,7 @@ Result:
 | Blue-theme school + project report | Success | Passed | The same layout library can migrate to a blue token system without changing geometry. |
 | Green-theme school + course report | Success | Passed | The same workflow works for a green token system. |
 | Missing school | Failure | Passed | The skill does not invent logo/color assets and enters asset onboarding instead. |
+| Real PPTX assembly | Success | Passed | A validated spec can produce a `.pptx` and contact-sheet preview. |
 
 ## Manual QA Prompts
 
@@ -87,4 +92,4 @@ Expected behavior:
 
 ## Current Boundary
 
-The workflow layer is now stable and tested. The current PPTX assembler is still sample-oriented. The next engineering milestone is a generic `assemble_deck.ps1` runtime that consumes `deck_spec.json` directly.
+The workflow layer is stable and tested. The first generic `assemble_deck.ps1` runtime now consumes `deck_spec.json` directly. The next engineering milestone is stronger automated visual QA for logo residue, color leakage, and layout overlap.

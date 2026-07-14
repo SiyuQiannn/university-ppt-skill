@@ -83,15 +83,12 @@ skill/university-ppt/
     content-layouts/
     schools/
 examples/
+  sample editable deck
   preview_contact_sheet.png
 docs/
 ```
 
-The repository main branch keeps the Skill source, scripts, references, theme tokens, preview images, and project documentation lightweight. The full editable PPTX template/layout library is attached to the latest GitHub Release:
-
-[Download full PPTX template library](https://github.com/SiyuQiannn/university-ppt-skill/releases/latest/download/university-ppt-skill-repo.zip)
-
-The release package includes the editable PPTX layout/template assets created during this project:
+This full package includes the editable PPTX layout/template assets created during this project:
 
 - 结构套件：封面、目录、章节、内容母版、结尾。
 - 内容版式库：多个信息关系类型的可编辑 PPTX。
@@ -106,8 +103,6 @@ Requirements:
 - Windows
 - Microsoft PowerPoint desktop app
 - PowerShell
-
-Download and unzip the latest Release package before running the asset checks or sample deck generator, because the large editable PPTX assets are distributed through Release files rather than the lightweight main branch.
 
 Check bundled assets:
 
@@ -135,6 +130,20 @@ The script exports:
 - a contact sheet for quick visual review
 - a validation CSV for QA checks
 
+Generate from a spec:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\skill\university-ppt\scripts\assemble_deck.ps1 -SkillRoot .\skill\university-ppt -SpecPath .\outputs\sample_deck\deck_spec.json -OutputDir .\outputs\sample_deck
+```
+
+Run the end-to-end smoke test:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\skill\university-ppt\scripts\run_assembly_smoke_test.ps1 -SkillRoot .\skill\university-ppt
+```
+
+See [docs/USAGE_SIMULATION.md](docs/USAGE_SIMULATION.md) for the simulated user conversation and generated PPT preview.
+
 ## Design Principles
 
 - PPT 必须可编辑，不能把整页做成不可编辑截图。
@@ -149,13 +158,14 @@ The script exports:
 
 ## Current Status
 
-Prototype, locally verified on 2026-06-21.
+Prototype, locally verified on 2026-07-14.
 
 当前版本已经验证：
 
 - 可生成可编辑 PPTX。
 - 可将用户请求固化为 `deck_spec.json`。
 - 可在生成前严格校验学校资产、主题 token、logo、版式和页面结构。
+- 可由 `deck_spec.json` 组装出真实可编辑 PPTX。
 - 可组合结构套件和内容版式。
 - 可在不同主色体系之间迁移。
 - 可导出预览图和视觉检查结果。
@@ -165,11 +175,12 @@ Workflow validation was refreshed on 2026-07-14:
 
 - `check_assets.ps1` passed.
 - `run_workflow_tests.ps1` passed 4/4 scenarios.
+- `run_assembly_smoke_test.ps1` passed and generated a real PPTX/contact sheet.
 - See [docs/VALIDATION.md](docs/VALIDATION.md).
 
 ## Roadmap
 
-- 将当前样例组装脚本升级为真正通用的 `deck_spec.json` PPTX 组装器。
+- 强化 `assemble_deck.ps1` 的自动视觉 QA：旧校徽残留、颜色泄漏、文本遮挡、版式越界。
 - 将学校迁移逻辑升级为 `brand.json` 驱动的通用主题迁移器。
 - 扩充无图片封面、目录、章节、结尾结构套件。
 - 为每一种主要信息关系补充 2-3 个复杂度不同的版式变体。
@@ -179,4 +190,4 @@ Workflow validation was refreshed on 2026-07-14:
 
 ## Notes
 
-This is a portfolio/work-in-progress repository. The layout assets in the release package are included so the project can be reviewed directly. Real school logos and campus imagery should be verified or replaced before broad redistribution.
+This is a portfolio/work-in-progress repository. The layout assets in this package are included so the project can be reviewed directly. Real school logos and campus imagery should be verified or replaced before broad redistribution.
