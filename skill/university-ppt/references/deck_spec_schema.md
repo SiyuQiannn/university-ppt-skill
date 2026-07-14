@@ -4,11 +4,32 @@
 
 任何生成脚本都必须先读取 `deck_spec.json`，不得只凭上下文记忆继续执行。
 
+当前 schema 版本：`0.2`。
+
+## 相关脚本
+
+创建 spec：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\new_deck_spec.ps1 -SkillRoot . -SchoolId ruc -Purpose thesis_defense -TargetSlideCount 12 -OutputPath .\outputs\ruc_thesis\deck_spec.json
+```
+
+严格校验 spec：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate_deck_spec.ps1 -SkillRoot . -SpecPath .\outputs\ruc_thesis\deck_spec.json -Strict
+```
+
+模板文件：
+
+- `assets/specs/deck_spec.template.json`
+- `assets/specs/deck_spec.sample.json`
+
 ## 顶层结构
 
 ```json
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "mode": "new_deck",
   "request": {},
   "school": {},

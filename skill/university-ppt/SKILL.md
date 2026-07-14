@@ -1,109 +1,116 @@
 ---
 name: university-ppt
-description: Create, audit, and migrate editable university-themed PowerPoint decks. Use when the user asks for a PPT/PPTX or slide template for a specific university, wants a school-branded deck, wants to migrate one university theme to another, or wants to expand a reusable university PPT layout library.
+description: Create, audit, and migrate editable university-themed PowerPoint decks. Use when the user asks for a PPT/PPTX or slide template for a specific university, wants a school-branded deck, wants a reusable university slide layout library, wants to migrate one university theme to another color/logo system, or wants to test/expand the university PPT generation workflow.
 ---
 
 # University PPT
 
-This skill creates editable 16:9 PowerPoint decks for university-themed presentations. It separates four concerns:
+Create editable 16:9 PowerPoint decks for university-themed presentations by separating five layers:
 
-1. Structure suites: cover, directory, chapter, content master, and ending pages.
-2. Content layouts: reusable center-area information structures.
-3. School theme assets: logo, school name, color tokens, and optional school photos.
-4. Deck workflow: user request intake, specification, assembly, migration, and QA.
+1. User intent: school, purpose, content status, slide count, image preference.
+2. School theme: `brand.json`, logo variants, theme tokens, optional confirmed photos.
+3. Structure suite: cover, toc, section, content master, ending.
+4. Content layouts: reusable center-area information structures.
+5. Workflow lock: `deck_spec.json`, validation report, preview contact sheet, revision loop.
 
-## Start Here
+## Required First Steps
 
-For every task, first identify the mode:
+Identify the mode before editing or generating any PPTX:
 
-- New deck: create a PPTX for a university and topic.
-- Template/library expansion: add more structure suites or content layout variants.
-- School migration: preserve page geometry and replace only theme colors, logo, school name, and school imagery.
-- QA/revision: inspect generated decks for the known failure modes below.
+- `new_deck`: user wants a new university-themed deck.
+- `theme_migration`: user wants one school theme converted to another.
+- `template_library`: user wants new structure/content layouts added.
+- `edit_existing`: user wants an existing PPTX changed.
+- `asset_onboarding`: user wants a new school added or school assets collected.
 
-Then read the relevant references:
+Read only the references needed for that mode:
 
-- Workflow: `references/workflow.md`
-- Deck specification schema: `references/deck_spec_schema.md`
+- Workflow contract: `references/workflow.md`
+- Deck spec schema: `references/deck_spec_schema.md`
 - Layout taxonomy: `references/layout_taxonomy.md`
 - Theme migration rules: `references/theme_migration_rules.md`
-- Asset requirements and public-repo policy: `references/asset_requirements.md`
+- Asset requirements: `references/asset_requirements.md`
+- Workflow test protocol: `references/test_protocol.md`
 
-## Required Workflow
+## Stable Generation Protocol
 
-1. Determine the target school and whether its assets already exist in `assets/schools/<school_id>/`.
-2. If the school exists, load `assets/schools/<school_id>/brand.json`.
-3. If the school is missing, ask for or research the minimum assets: logo, school name, primary color, secondary color logic, and suitable campus images.
-4. Run `scripts/check_assets.ps1` before assembly when using bundled scripts.
-5. Create a deck spec using `references/deck_spec_schema.md`.
-6. Choose one structure suite and enough content layouts from `references/layout_taxonomy.md`.
-7. Assemble an editable `.pptx`; do not use flattened full-slide images as the final deliverable.
-8. Export a preview contact sheet and manually/visually audit it before delivery.
+Always make generation spec-driven.
+
+1. Inspect `assets/library_index.json` and the target `assets/schools/<school_id>/brand.json`.
+2. If the target school exists, create a spec with `scripts/new_deck_spec.ps1` or by copying `assets/specs/deck_spec.template.json`.
+3. If the target school is missing, do not fabricate assets. Switch to `asset_onboarding` and ask for logo, school name, primary color, and optional confirmed images.
+4. Validate the spec with `scripts/validate_deck_spec.ps1 -Strict`.
+5. Assemble or edit the PPTX only after the spec passes.
+6. Export previews/contact sheet whenever possible.
+7. Fix QA failures before delivery.
+
+Example:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\new_deck_spec.ps1 `
+  -SkillRoot . `
+  -SchoolId ruc `
+  -Purpose thesis_defense `
+  -TargetSlideCount 12 `
+  -OutputPath .\outputs\ruc_thesis\deck_spec.json
+
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate_deck_spec.ps1 `
+  -SkillRoot . `
+  -SpecPath .\outputs\ruc_thesis\deck_spec.json `
+  -Strict
+```
 
 ## Non-Negotiable Output Rules
 
-- Final deliverable must be editable PPTX.
+- Final deliverable must be editable PPTX, not a full-slide screenshot deck.
 - Use 16:9 widescreen unless the user explicitly asks otherwise.
-- Use Microsoft YaHei for all editable text.
+- Use Microsoft YaHei for editable Chinese text.
 - Keep placeholder copy generic: `标题`, `此处填写标题`, `此处填写副标题`, `此处填写文字`.
-- Remove source-template/vendor text such as template website names, author names, and irrelevant school/topic content.
-- Preserve logo aspect ratio. Use a white logo on dark bars and colored logo on light backgrounds.
-- Structure chrome belongs to the structure suite or content master, not to individual center layout files.
-- Content layout files should contain only the center information structure and only necessary text boxes.
-- Prefer no-photo structure suites for normal user decks. Use campus photos only when they improve the deck and match the target school.
+- Remove vendor/source-template text, author names, websites, old school names, and irrelevant old topic copy.
+- Preserve logo aspect ratio. Use white logo on dark bars and colored logo on light backgrounds.
+- Prefer no-photo structure suites for normal user decks. Use photos only when they are target-school or user-provided assets.
+- Structure chrome belongs to structure suites and content masters.
+- Content layouts must contain only the center information structure and necessary text boxes.
 
-## Theme Migration Rules
+## Theme Migration Contract
 
-When converting one school deck to another, do not redesign the deck. Preserve:
+When converting one school deck to another, preserve:
 
-- Object positions
-- Object sizes
+- Object positions and sizes
+- Slide count
 - Layout rhythm
-- Page count
 - Information relation type
-- Master/content separation
+- Structure/content boundary
 
 Replace only:
 
-- Primary theme color and its shade tokens
-- Neutral/accent tokens according to the target brand
-- Logo and school name
-- School-specific images
+- Theme tokens
+- Logo variants
+- School names
+- Confirmed school imagery
 
-Never leave major colors from the old school after migration. For example, a blue theme should not keep red/green/pink as main colors; a green theme should not keep blue/red/pink as main colors. Use gray and small pale warm accents only when they support the primary color.
+Never leave major colors from the old school after migration. A blue theme must not retain red/green/pink/orange as strong colors; a green theme must not retain blue/red/pink/orange as strong colors. Use gray and small pale warm accents only when they support the primary color.
 
-## Known Failure Modes To Check
+## Known Failure Modes To Block
 
-- Full-page primary-color backgrounds on cover/chapter pages when the reference suite only uses a central horizontal band.
-- Stretched or squashed logo.
-- White logo accidentally losing the school mark details on a light background.
-- Directory or title text covering the logo/school name.
-- Extra PowerPoint placeholders or master text boxes left on the page.
-- Source template copy or meaningful old content left in placeholders.
-- Red/pink/green/orange artifacts left after migrating to a blue school.
-- Red/blue/pink/orange artifacts left after migrating to a green school.
-- Mismatched fonts on directory pages or section pages.
-- Content layout pages carrying their own header/footer/page number chrome.
+- Cover/section pages become full-screen primary color when the selected structure only uses a central band or structural bars.
+- Logo is stretched, squashed, hidden, or loses detail on the wrong background.
+- Directory/title text covers logo or school name.
+- PowerPoint default placeholders or master text boxes remain visible.
+- Meaningful old source content remains, such as original template title, school, website, author, or topic.
+- Content layout pages include their own header/footer/page number/logo chrome.
+- Non-target school images remain.
+- Default Office blue/green/orange or old-school colors leak after migration.
+- Fonts differ across directory, section, and content pages.
+- 4:3 source pages leave side blanks in 16:9 output.
 
-## Asset Conventions
+## Testing Requirement
 
-Use this structure for each school:
+After changing this skill, run:
 
-```text
-assets/schools/<school_id>/
-  brand.json
-  logos/
-    full-color.*
-    white.*
-  photos/
-    campus-*.*
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\check_assets.ps1 -SkillRoot .
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_workflow_tests.ps1 -SkillRoot .
 ```
 
-Use this structure for reusable layout sources:
-
-```text
-assets/structure-suites/
-assets/content-layouts/
-```
-
-The current local workspace also contains generated PPTX examples and scripts under `D:\ppt工具`; those can be promoted into this skill after the structure, scripts, and QA gates are finalized.
+The workflow tests must include successful specs for onboarded schools and one expected failure for a missing school. If a test fails unexpectedly, update the skill resources and rerun until it passes.

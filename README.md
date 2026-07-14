@@ -44,6 +44,14 @@ Skill 的工作流会拆成四步：
 
 如果学校不在主题库中，Skill 会提示用户补充学校 logo、标准色、学校中英文名称、可用校园图片或禁用图片的要求。
 
+当前工作流已经固化为 spec-first 机制：
+
+```text
+user request -> deck_spec.json -> strict validation -> PPTX assembly -> preview/QA -> revision
+```
+
+`deck_spec.json` 会锁定学校、主题 token、结构套件、内容页关系、版式选择、图片策略和校验规则，避免每次生成都靠临场判断。
+
 ## Theme Model
 
 主题迁移不是简单的查找替换颜色，而是把颜色位置抽象成 token：
@@ -70,17 +78,20 @@ skill/university-ppt/
   scripts/
   assets/
     library_index.json
+    specs/
+    structure-suites/
+    content-layouts/
     schools/
 examples/
   preview_contact_sheet.png
 docs/
 ```
 
-仓库主分支保留 Skill 源文件、脚本、规则文档、主题 token、预览图和项目说明。完整可编辑 PPTX 模板库体积较大，放在 GitHub Release 中：
+The repository main branch keeps the Skill source, scripts, references, theme tokens, preview images, and project documentation lightweight. The full editable PPTX template/layout library is attached to the latest GitHub Release:
 
 [Download full PPTX template library](https://github.com/SiyuQiannn/university-ppt-skill/releases/latest/download/university-ppt-skill-repo.zip)
 
-Release ZIP 中包含项目当前生成的完整模板资产：
+The release package includes the editable PPTX layout/template assets created during this project:
 
 - 结构套件：封面、目录、章节、内容母版、结尾。
 - 内容版式库：多个信息关系类型的可编辑 PPTX。
@@ -96,14 +107,22 @@ Requirements:
 - Microsoft PowerPoint desktop app
 - PowerShell
 
-1. 下载 Release 中的完整模板包并解压。
-2. 在项目根目录运行资源检查：
+Download and unzip the latest Release package before running the asset checks or sample deck generator, because the large editable PPTX assets are distributed through Release files rather than the lightweight main branch.
+
+Check bundled assets:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\skill\university-ppt\scripts\check_assets.ps1 -SkillRoot .\skill\university-ppt
 ```
 
-3. 生成一份样例 deck：
+Create and validate a stable deck spec:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\skill\university-ppt\scripts\new_deck_spec.ps1 -SkillRoot .\skill\university-ppt -SchoolId ruc -Purpose thesis_defense -TargetSlideCount 12 -OutputPath .\outputs\sample_deck\deck_spec.json
+powershell -NoProfile -ExecutionPolicy Bypass -File .\skill\university-ppt\scripts\validate_deck_spec.ps1 -SkillRoot .\skill\university-ppt -SpecPath .\outputs\sample_deck\deck_spec.json -Strict
+```
+
+Generate a sample deck:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\skill\university-ppt\scripts\assemble_ruc_sample_deck.ps1 -OutputDir .\outputs\sample_deck
@@ -135,14 +154,22 @@ Prototype, locally verified on 2026-06-21.
 当前版本已经验证：
 
 - 可生成可编辑 PPTX。
+- 可将用户请求固化为 `deck_spec.json`。
+- 可在生成前严格校验学校资产、主题 token、logo、版式和页面结构。
 - 可组合结构套件和内容版式。
 - 可在不同主色体系之间迁移。
 - 可导出预览图和视觉检查结果。
 - 可将完整模板库作为 Release 资产交付。
 
+Workflow validation was refreshed on 2026-07-14:
+
+- `check_assets.ps1` passed.
+- `run_workflow_tests.ps1` passed 4/4 scenarios.
+- See [docs/VALIDATION.md](docs/VALIDATION.md).
+
 ## Roadmap
 
-- 将样例组装脚本升级为 `deck_spec.json` 驱动的通用组装器。
+- 将当前样例组装脚本升级为真正通用的 `deck_spec.json` PPTX 组装器。
 - 将学校迁移逻辑升级为 `brand.json` 驱动的通用主题迁移器。
 - 扩充无图片封面、目录、章节、结尾结构套件。
 - 为每一种主要信息关系补充 2-3 个复杂度不同的版式变体。

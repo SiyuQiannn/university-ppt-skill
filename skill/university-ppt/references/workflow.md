@@ -2,6 +2,19 @@
 
 本文件定义 skill 在面对大学主题 PPT 请求时的执行流程。它只描述流程和决策，不描述具体脚本实现。
 
+## 稳定执行原则
+
+任何生成或迁移任务都必须先落到 `deck_spec.json`，再进入 PPTX 组装。
+
+推荐命令：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\new_deck_spec.ps1 -SkillRoot . -SchoolId ruc -Purpose thesis_defense -TargetSlideCount 12 -OutputPath .\outputs\ruc_thesis\deck_spec.json
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate_deck_spec.ps1 -SkillRoot . -SpecPath .\outputs\ruc_thesis\deck_spec.json -Strict
+```
+
+如果 spec 校验不通过，不得继续生成正式 PPTX。先修复资产、schema、页面计划或主题 token。
+
 ## 设计目标
 
 - 输出优先级：可编辑 PPTX > 预览图 > 其他格式。
@@ -31,10 +44,11 @@
 4. 若学校不存在：进入学校资产补全流程。
 5. 生成或读取内容大纲：形成 `slides_plan.md`，必要时给用户确认。
 6. 生成 `deck_spec.json`：锁定学校、结构套件、色彩映射、内容页母版、版式选择和校验规则。
-7. 预览风格：默认给 3 套四件套 + 内容母版预览，用户选择后再完整生成。
-8. 组装 PPTX：使用结构套件、内容母版和内容版式库生成可编辑 PPTX。
-9. 自动校验：渲染预览、检查颜色、logo、字体、旧文字、版式越界和图片来源。
-10. 交付：输出 PPTX、预览图、校验摘要和可修改建议。
+7. 严格校验 spec：运行 `validate_deck_spec.ps1 -Strict`。
+8. 预览风格：默认给 3 套四件套 + 内容母版预览，用户选择后再完整生成。
+9. 组装 PPTX：使用结构套件、内容母版和内容版式库生成可编辑 PPTX。
+10. 自动校验：渲染预览、检查颜色、logo、字体、旧文字、版式越界和图片来源。
+11. 交付：输出 PPTX、预览图、校验摘要和可修改建议。
 
 ## 用户信息收集
 
@@ -218,6 +232,24 @@ target_slides: 16
 
 校验失败时先修复，再重新渲染预览。
 
+## 工作流回归测试
+
+每次修改 skill 后运行：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\check_assets.ps1 -SkillRoot .
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\run_workflow_tests.ps1 -SkillRoot .
+```
+
+回归测试至少覆盖：
+
+- 已入库红色系样本学校新建 deck spec。
+- 已入库蓝色系学校新建 deck spec。
+- 已入库绿色系学校新建 deck spec。
+- 未入库学校应失败并进入资产补全。
+
+更多测试说明见 `references/test_protocol.md`。
+
 ## 交付格式
 
 交付时给用户：
@@ -231,4 +263,3 @@ target_slides: 16
 - 可继续修改的方向。
 
 不要把内部 JSON、脚本参数、缓存路径暴露给普通用户，除非用户询问技术细节。
-

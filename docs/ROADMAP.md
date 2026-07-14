@@ -11,6 +11,9 @@
 
 ## Phase 2: Generic Runtime
 
+- [x] Implement `new_deck_spec.ps1` to create a stable generation spec.
+- [x] Implement `validate_deck_spec.ps1` to gate generation before PPTX assembly.
+- [x] Implement workflow regression tests for success and expected-failure scenarios.
 - [ ] Implement `assemble_deck.ps1` driven by `deck_spec.json`.
 - [ ] Implement `migrate_school_theme.ps1` driven by `brand.json`.
 - [ ] Separate required runtime assets from optional school photo packs.

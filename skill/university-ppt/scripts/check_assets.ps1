@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$SkillRoot = ""
 )
 
@@ -28,6 +28,12 @@ Add-Check "reference" "references\deck_spec_schema.md"
 Add-Check "reference" "references\layout_taxonomy.md"
 Add-Check "reference" "references\theme_migration_rules.md"
 Add-Check "reference" "references\asset_requirements.md"
+Add-Check "reference" "references\test_protocol.md"
+Add-Check "script" "scripts\new_deck_spec.ps1"
+Add-Check "script" "scripts\validate_deck_spec.ps1"
+Add-Check "script" "scripts\run_workflow_tests.ps1"
+Add-Check "spec" "assets\specs\deck_spec.template.json"
+Add-Check "spec" "assets\specs\deck_spec.sample.json"
 
 $libraryPath = Join-Path $SkillRoot "assets\library_index.json"
 if (Test-Path -LiteralPath $libraryPath) {

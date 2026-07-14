@@ -1,0 +1,100 @@
+{
+  "schema_version": "0.2",
+  "mode": "new_deck",
+  "request": {
+    "raw_user_request": "",
+    "language": "zh-CN",
+    "purpose": "course_report",
+    "audience": "general_university_audience",
+    "target_slide_count": 12,
+    "content_status": "outline_only",
+    "output_format": "pptx",
+    "aspect_ratio": "16:9",
+    "density": "reading_first",
+    "image_preference": "minimal"
+  },
+  "school": {
+    "school_id": "",
+    "name_zh": "",
+    "name_en": "",
+    "short_name": "",
+    "asset_status": "missing",
+    "asset_dir": "",
+    "source_policy": "needs_user_confirmation"
+  },
+  "theme": {
+    "font_zh": "Microsoft YaHei",
+    "font_en": "Arial",
+    "family": "",
+    "tokens": {
+      "primary": "#000000",
+      "primary_dark": "#000000",
+      "primary_light_75": "#000000",
+      "primary_light_50": "#000000",
+      "primary_light_25": "#000000",
+      "neutral_dark": "#333333",
+      "neutral": "#808080",
+      "neutral_light": "#E9E9E9",
+      "background": "#FFFFFF"
+    },
+    "allowed_supporting_roles": ["neutral", "neutral_light", "accent", "accent_pale"],
+    "forbidden_color_families": ["unmapped_source_school_color", "saturated_competing_color"]
+  },
+  "assets": {
+    "logos": {},
+    "photos": [],
+    "icons": {
+      "source": "built_in_editable_shapes",
+      "recolor_policy": "theme_tokens_only"
+    }
+  },
+  "structure_suite": {
+    "suite_id": "",
+    "source": "",
+    "selected_from_preview": "",
+    "pages": {}
+  },
+  "slides": [],
+  "layout_policy": {
+    "content_layout_source": "assets/content-layouts",
+    "variants_per_relation": {
+      "default": 2,
+      "major": 3
+    },
+    "avoid_repeating_exact_layout_within": 3,
+    "text_box_policy": "only_required_text_boxes",
+    "center_layout_only": true,
+    "chrome_owned_by_master": true
+  },
+  "generation_policy": {
+    "editable_pptx_required": true,
+    "whole_slide_image_allowed": false,
+    "pptx_engine_priority": ["existing_pptx_template_clone", "openxml_edit", "pptxgenjs_from_layout_recipe"],
+    "shape_complexity": "preserve_or_recreate",
+    "font_policy": "microsoft_yahei_all_editable_text",
+    "slide_size": "16:9"
+  },
+  "validation_policy": {
+    "render_preview": true,
+    "checks": [
+      "aspect_ratio_16_9",
+      "logo_aspect_ratio",
+      "font_family",
+      "theme_color_bounds",
+      "source_school_residue",
+      "template_source_residue",
+      "non_target_school_images",
+      "structure_page_main_color_extent",
+      "content_layout_no_extra_chrome",
+      "text_box_overcrowding",
+      "visual_overlap"
+    ],
+    "fail_on": ["source_school_residue", "logo_distortion", "forbidden_strong_color", "non_target_school_image", "broken_pptx"]
+  },
+  "outputs": {
+    "output_dir": "",
+    "pptx": "",
+    "preview_contact_sheet": "",
+    "validation_report": ""
+  }
+}

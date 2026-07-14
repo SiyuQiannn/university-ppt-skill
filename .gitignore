@@ -6,3 +6,5 @@ Thumbs.db
 .DS_Store
 preview_png/
 *.log
+_workflow_test_output/
+skill/university-ppt/_workflow_test_output/

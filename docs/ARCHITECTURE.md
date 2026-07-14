@@ -25,12 +25,17 @@ The migration rule is strict:
 - `skill/university-ppt/SKILL.md`: entry point for Codex.
 - `skill/university-ppt/references/workflow.md`: full workflow.
 - `skill/university-ppt/references/layout_taxonomy.md`: layout taxonomy.
-- `skill/university-ppt/references/deck_spec_schema.md`: planned JSON schema.
+- `skill/university-ppt/references/deck_spec_schema.md`: deck spec contract.
 - `skill/university-ppt/references/theme_migration_rules.md`: migration rules.
+- `skill/university-ppt/references/test_protocol.md`: workflow test protocol.
 - `skill/university-ppt/assets/library_index.json`: layout asset index.
+- `skill/university-ppt/assets/specs/deck_spec.template.json`: reusable spec template.
 - `skill/university-ppt/scripts/assemble_ruc_sample_deck.ps1`: current sample assembler.
 - `skill/university-ppt/scripts/check_assets.ps1`: asset validation.
+- `skill/university-ppt/scripts/new_deck_spec.ps1`: creates a locked deck spec from a user request.
+- `skill/university-ppt/scripts/validate_deck_spec.ps1`: validates spec structure, assets, theme tokens, and page rules.
+- `skill/university-ppt/scripts/run_workflow_tests.ps1`: tests the stable workflow against success and expected-failure scenarios.
 
 ## Current Limitation
 
-The current assembler is still RUC-sample oriented. The next engineering step is turning it into a generic deck assembler driven by `deck_spec.json` and `brand.json`.
+The current assembler is still sample oriented. The workflow layer is now spec-driven; the next engineering step is turning the PPTX assembler itself into a generic `deck_spec.json` runtime.
